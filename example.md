@@ -16,14 +16,18 @@ lang: "en"
 mainfont: "Noto Serif"
 colorlinks: true
 change-record:
-  - {version: "1.0", date: "2019-04-10", comment: "First version of the report"}
+  - version: "1.0"
+    date: "2019-04-10"
+    comment: "First version of the report"
+  - version: "0.1"
+    date: "2019-04-04"
+    comment: "Horrible draft!"
 bibliography:
   - "bibliography_example1.bib"
 link-citations: true
 abstract: |
     This is the abstract of the report.
     Blah blah blah.
-
 ---
 
 # First section
@@ -35,12 +39,15 @@ Here is a numbered list:
 1. Strip
 2. LSPE
 
-Unnumbered, nested lists are possible as well:
+Unnumbered, nested lists[^listnote] are possible as well:
 
 - A
 - B:
   - B1
   - B2
+
+[^listnote]: You are not forced to use `-` in unnumbered lists; `*`
+    will work too.
 
 Here is an equation:
 
@@ -49,16 +56,23 @@ Here is an equation:
 C_\ell = \left< a_{\ell m} \right>.
 \end{equation}
 
-The equation above has number \ref{eq:test}. Here is a citation:
-@Ronchi1996. It can be put within parentheses using square brackets
-[@Ronchi1996].
+And here is a figure:
+
+![This is a figure.](./lspe_logo.pdf){ width=3cm }
+
+The equation above has number \ref{eq:test}. Inline equations work
+too: \\(f(x) = \exp x\\). Here is a citation: @Ronchi1996. It can be
+put within parentheses using square brackets [@Ronchi1996].
 
 
 ## First sub-section
 
-Here is some code:
+Here is some code written in Julia:
 
 ```julia
+import Pkg
+Pkg.add("Healpix")
+
 import Healpix
 println(Healpix.nside2npix(128))
 ```
@@ -70,14 +84,19 @@ And here is a table:
 | Foo      | 10.1     |
 | Bar      | 10.2     |
 
+Table: This is the caption of the table.
 
 # Second section
 
 Hyperlinks can be written in the following way:
-[Python](https://www.python.doc).
+
+- [The first subsection above](#first-sub-section) (internal hyperlink);
+- [Python](https://www.python.doc) (external hyperlink).
 
 # Referenced documents
 
 This is filled automatically, and should come at the end of the
-document. Remove this section if you do not have documents to
+document (it is not possible to move it elsewhere, until [this bug in
+Pandoc](https://github.com/jbn/GMU_Dissertation_Pandoc_Tmpl/issues/3)
+is fixed). Remove this section if you do not have documents to
 reference.

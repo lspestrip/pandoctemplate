@@ -5,17 +5,15 @@ $if(colorlinks)$
 $endif$$if(dir)$$if(latex-dir-rtl)$
 \PassOptionsToPackage{RTLdocument}{bidi}
 $endif$$endif$%
-\documentclass[$if(fontsize)$$fontsize$$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$else$a4wide$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[$if(fontsize)$$fontsize$$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$else$a4$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
 
 \usepackage{pgfpages}
 \usepackage{a4wide}
-\usepackage{graphicx}
+\usepackage[centering,includehead,includefoot,margin=2.25cm,headheight=2cm,footskip=3cm]{geometry}
 \usepackage{fancyhdr}
 \usepackage{caption}
 \usepackage{lastpage}
-\usepackage{longtable}
 \usepackage{url}
-\usepackage{multibib}
 
 \newcommand{\mainmatter}{\pagenumbering{arabic}\setcounter{page}{1}}
 
@@ -35,9 +33,6 @@ $endif$$endif$%
     \end{tabular}
 }
 \newcommand{\standardfooter}{\noindent\bfseries{\large $institutes$}\\{LSPE/Strip Project System Team}}
-
-\addtolength{\headheight}{5em}
-\addtolength{\textheight}{-10em}
 
 \fancyhead{}
 \renewcommand{\headrulewidth}{0pt}
@@ -59,7 +54,7 @@ $endif$$endif$%
   \begin{tabular}{ll}
     \parbox{2cm}{\includegraphics[width=2cm]{lspe_logo.pdf}}
     &
-    \begin{tabular}{p{4.5cm}p{8cm}}
+    \begin{tabular}{p{6.5cm}p{6cm}}
       {$institutes$} & 
       \parbox{8cm}{\huge \textbf{LSPE/Strip}} \\
 	     {\small LSPE/Strip Project System Team}
@@ -208,9 +203,6 @@ $endif$
 $if(verbatim-in-note)$
 \VerbatimFootnotes % allows verbatim text in footnotes
 $endif$
-$if(geometry)$
-\usepackage[$for(geometry)$$geometry$$sep$,$endfor$]{geometry}
-$endif$
 $if(listings)$
 \usepackage{listings}
 \newcommand{\passthrough}[1]{#1}
@@ -332,14 +324,17 @@ $endif$
 $if(change-record)$
 \section*{Change record}
 
-\begin{itemize}
-$for(change-record)$
-\item[] Version \textbf{$change-record.version$}
-  ($change-record.date$):
-  $change-record.comment$
-$endfor$
-\end{itemize}
-
+\begin{center}
+  \begin{tabular}{|c|c|p{10cm}|}
+    \hline
+    \textbf{Version}& \textbf{Date}& \textbf{Comment}\\
+    \hline
+    $for(change-record)$
+    $change-record.version$& $change-record.date$& $change-record.comment$\\
+    \hline
+    $endfor$
+  \end{tabular}
+\end{center}
 \newpage
 $endif$
 
@@ -371,12 +366,12 @@ $if(lof)$
 \listoffigures
 $endif$
 
-$body$
-
 $if(bibliography)$
 \renewcommand\refname{Referenced documents}
 \bibliography{$for(bibliography)$$bibliography$$sep$,$endfor$}
 $endif$
+
+$body$
 
 $for(include-after)$
 $include-after$
