@@ -1,7 +1,7 @@
 # Pandoc template for LSPE/Strip reports
 
-This folder provides a Pandoc template to create beautiful LSPE/Strip
-reports from Markdown files.
+This folder provides a [Pandoc](https://pandoc.org/) template to
+create beautiful LSPE/Strip reports from Markdown files.
 
 ![](./pandoc_lspe.png)
 
@@ -15,6 +15,59 @@ The following features are currently supported:
 - [X] Abstract
 - [X] Support for Unicode characters
 
+
+## Why on Earth would this be useful?
+
+It allows you to *quickly* produce a nicely-formatted technical
+document using LaTeX but avoiding its strange syntax. Markdown text
+can be easily written and read:
+
+```
+# Introduction
+
+- This is *very* important to remember!
+- Here is a code snippet: `a+b`
+- Here is an hyperlink: https://www.google.com
+
+## A short subsection
+
+And here is a table:
+
+| Column 1 | Column 2 |
+|----------|----------|
+| Foo      | 10.1     |
+| Bar      | 10.2     |
+
+Table: This is the caption of the table.
+```
+
+Instead, if you use LaTeX you should write:
+
+```tex
+\section{Introduction}
+
+\begin{itemize}
+\item This is \emph{very} important to remember!
+\item Here is a code snippet: \verb|a+b|.
+\item Here is an hyperlink: \url{https://www.google.com}
+\end{itemize}
+
+\subsection{A short subsection}
+
+And here is a table:
+\begin{table}
+  \centering
+  \caption{This is the caption of the table}
+  \begin{tabular}{ll}
+    \hline
+    \textbf{Column 1}& \textbf{Column 2}\\
+    \hline
+    Foo& 10.1\\
+    Bar& 10.2\\
+    \hline
+  \end{tabular}
+\end{table}
+```
 
 ## Requisites
 
@@ -44,10 +97,11 @@ Here is an explanation of the flags used:
   bibliography (see below) to appear in the document.
 - `-f markdown+footnotes+tex_math_double_backslash`: this flag
   specifies the dialect used in the input file. The dialect should
-  always begin with `markdown`; other fields specify plugins that
-  enable additional features (see the [Pandoc User's
-  Guide](https://pandoc.org/MANUAL.html)). There are no specific
-  requirements on the plugins; the provided `Makefile` uses these:
+  always begin with `markdown` or `gfm` (GitHub-flavoured Markdown);
+  other fields specify plugins that enable additional features (see
+  the [Pandoc User's Guide](https://pandoc.org/MANUAL.html)). There
+  are no specific requirements on the plugins; the provided `Makefile`
+  uses these:
   - `tex_math_double_backslash` enables writing LaTeX equations within
     `\\(` and `\\)`.
 - `-t latex`: this is required, as the Pandoc template is written in
@@ -68,6 +122,7 @@ the so-called *header*: a block of text enclosed within three slashes:
 less like this (taken from `example.md`):
 
 ```yaml
+---
 title: "Example report"
 authors:
   - "S. Trip"
@@ -97,27 +152,30 @@ link-citations: true
 abstract: |
     This is the abstract of the report.
     Blah blah blah.
+---
 ```
 
 Here is a table explaining the meaning of each entry.
 
 | Field                      | Type            | Meaning                                                      |
 |:---------------------------|:----------------|:-------------------------------------------------------------|
-| `title`                    | String          | Title of the document                                        |
-| `authors`                  | List of strings | List of the authors                                          |
-| `agreed-by`                | String          | Name of the person that agreed to release the document       |
-| `agree-date`               | String          | Date when the document was agreed to be released             |
-| `approved-by`              | String          | Name of the person that approved the release of the document |
-| `approvation-date`         | String          | Date when the document was approved                          |
-| `document-type`            | String          | Type of the document, e.g., "Specification document"         |
-| `project-reference-number` | String          | Unique identifier for the document                           |
-| `issue`                    | String          | Version number                                               |
-| `institutes`               | String          | Affiliation of the author(s)                                 |
-| `date`                     | String          | Date when the document was issued                            |
-| `lang`                     | String          | Language of the document                                     |
-| `mainfont`                 | String          | Font to be used in the document body                         |
-| `colorlinks`               | Boolean         | If `true`, links in the text will be colored                 |
-| `change-record`            | List of fields  | Each field must contain `version`, `date`, and `comment`     |
-| `bibliography`             | List of strings | List of `.bib` file names containing the bibliography        |
-| `link-citations`           | Boolean         | If `true`, hyperlinks will be created for each citation      |
 | `abstract`                 | String          | Abstract for the document                                    |
+| `agree-date`               | String          | Date when the document was agreed to be released             |
+| `agreed-by`                | String          | Name of the person that agreed to release the document       |
+| `approvation-date`         | String          | Date when the document was approved                          |
+| `approved-by`              | String          | Name of the person that approved the release of the document |
+| `authors`                  | List of strings | List of the authors                                          |
+| `bibliography`             | List of strings | List of `.bib` file names containing the bibliography        |
+| `change-record`            | List of fields  | Each field must contain `version`, `date`, and `comment`     |
+| `colorlinks`               | Boolean         | If `true`, links in the text will be colored                 |
+| `date`                     | String          | Date when the document was issued                            |
+| `document-type`            | String          | Type of the document, e.g., "Specification document"         |
+| `institutes`               | String          | Affiliation of the author(s)                                 |
+| `issue`                    | String          | Version number                                               |
+| `lang`                     | String          | Language of the document                                     |
+| `lof`                      | Boolean         | If `true`, include a list of figures                         |
+| `lot`                      | Boolean         | If `true`, include a list of tables                          |
+| `link-citations`           | Boolean         | If `true`, hyperlinks will be created for each citation      |
+| `mainfont`                 | String          | Font to be used in the document body                         |
+| `project-reference-number` | String          | Unique identifier for the document                           |
+| `title`                    | String          | Title of the document                                        |
