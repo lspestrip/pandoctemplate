@@ -5,12 +5,13 @@ $if(colorlinks)$
 $endif$$if(dir)$$if(latex-dir-rtl)$
 \PassOptionsToPackage{RTLdocument}{bidi}
 $endif$$endif$%
-\documentclass[$if(fontsize)$$fontsize$$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$else$a4$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[$if(fontsize)$$fontsize$$else$12pt,$endif$$if(lang)$$babel-lang$,$endif$$if(papersize)$$papersize$paper,$else$a4$endif$$for(classoption)$$classoption$$sep$,$endfor$]{article}
 
 \usepackage{pgfpages}
 \usepackage{a4wide}
-\usepackage[centering,includehead,includefoot,margin=2.25cm,headheight=2cm,footskip=3cm]{geometry}
+\usepackage[centering,headheight=64pt,footskip=1.9cm]{geometry}
 \usepackage{fancyhdr}
+\usepackage{microtype}
 \usepackage{caption}
 \usepackage{lastpage}
 \usepackage{url}
@@ -98,7 +99,6 @@ $if(linestretch)$
 $endif$
 \usepackage{amssymb,amsmath}
 \usepackage{ifxetex,ifluatex}
-\usepackage{fixltx2e} % provides \textsubscript
 \ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
   \usepackage[$if(fontenc)$$fontenc$$else$T1$endif$]{fontenc}
   \usepackage[utf8]{inputenc}

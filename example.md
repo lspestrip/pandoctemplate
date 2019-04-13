@@ -42,9 +42,7 @@ Here is a numbered list:
 Unnumbered, nested lists[^listnote] are possible as well:
 
 - A
-- B:
-  - B1
-  - B2
+- B
 
 [^listnote]: You are not forced to use `-` in unnumbered lists; `*`
     will work too.
@@ -64,15 +62,11 @@ The equation above has number \ref{eq:test}. Inline equations work
 too: \\(f(x) = \exp x\\). Here is a citation: @Ronchi1996. It can be
 put within parentheses using square brackets [@Ronchi1996].
 
-
 ## First sub-section
 
 Here is some code written in Julia:
 
 ```julia
-import Pkg
-Pkg.add("Healpix")
-
 import Healpix
 println(Healpix.nside2npix(128))
 ```
@@ -85,8 +79,6 @@ And here is a table:
 | Bar      | 10.2     |
 
 Table: This is the caption of the table.
-
-# Second section
 
 Hyperlinks can be written in the following way:
 
