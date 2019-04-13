@@ -5,16 +5,22 @@ create beautiful LSPE/Strip reports from Markdown files.
 
 ![](./pandoc_lspe.png)
 
+Check out the example PDF
+[here](https://github.com/lspestrip/pandoctemplate/blob/master/example.pdf).
+
 The following features are currently supported:
 
-- [X] Production of a compliant title page
+- [X] Nicely formatted title page
 - [X] Multiple authors
 - [X] Support for BibTeX bibliographies
 - [X] Change list
 - [X] Table of contents
 - [X] Abstract
 - [X] Support for Unicode characters
+- [ ] Separate reference/applicable documents(*)
 
+(*) This is hard to implement, as multiple bibliographies are not
+supported by Pandoc.
 
 ## Why on Earth would this be useful?
 
