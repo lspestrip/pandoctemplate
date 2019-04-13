@@ -20,7 +20,9 @@ The following features are currently supported:
 
 It allows you to *quickly* produce a nicely-formatted technical
 document using LaTeX but avoiding its strange syntax. Markdown text
-can be easily written and read:
+can be easily written and read (see [Pandoc User's
+Guide](https://pandoc.org/MANUAL.html#pandocs-markdown) for a complete
+reference of Markdown syntax):
 
 ```
 # Introduction
@@ -84,7 +86,7 @@ following options:
 
     pandoc --template=lspe_template.tex \
         --filter=pandoc-citeproc \
-        -f markdown+footnotes+table_captions+tex_math_double_backslash \
+        -f markdown+tex_math_double_backslash \
         -t latex \
         --pdf-engine=lualatex \
         -o example.pdf example.md
@@ -95,13 +97,13 @@ Here is an explanation of the flags used:
   the template to use in the generation of the document.
 - `--filter=pandoc-citeproc`: this must be used if you want a
   bibliography (see below) to appear in the document.
-- `-f markdown+footnotes+tex_math_double_backslash`: this flag
-  specifies the dialect used in the input file. The dialect should
-  always begin with `markdown` or `gfm` (GitHub-flavoured Markdown);
-  other fields specify plugins that enable additional features (see
-  the [Pandoc User's Guide](https://pandoc.org/MANUAL.html)). There
-  are no specific requirements on the plugins; the provided `Makefile`
-  uses these:
+- `-f markdown+tex_math_double_backslash`: this flag specifies the
+  dialect used in the input file. The dialect should always begin with
+  `markdown` or `gfm` (GitHub-flavoured Markdown); other fields
+  specify plugins that enable additional features (see the [Pandoc
+  User's Guide](https://pandoc.org/MANUAL.html)). There are no
+  specific requirements on the plugins; the provided `Makefile` uses
+  these:
   - `tex_math_double_backslash` enables writing LaTeX equations within
     `\\(` and `\\)`.
 - `-t latex`: this is required, as the Pandoc template is written in
