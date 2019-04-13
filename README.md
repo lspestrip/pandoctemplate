@@ -181,3 +181,20 @@ Here is a table explaining the meaning of each entry.
 | `mainfont`                 | String          | Font to be used in the document body                         |
 | `project-reference-number` | String          | Unique identifier for the document                           |
 | `title`                    | String          | Title of the document                                        |
+
+
+## The example uses a really nice font! What's this?
+
+It's Google Noto. On Ubuntu-based systems, you can install it using
+this command:
+
+    sudo apt install fonts-noto
+    
+Specify this line in the metadata at the beginning of your Markdown
+file:
+
+```yaml
+mainfont: "Noto Serif"
+```
+
+(You can use `Noto Sans` if you prefer fonts without ligatures.)
